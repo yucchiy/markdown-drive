@@ -1,16 +1,22 @@
 language: ruby
 rvm:
-  - 2.1.2
+- 2.1.2
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - bundle exec rake db:migrate --trace
-  - bundle exec rake db:seed --trace
-  - bundle exec rake db:test:prepare --trace
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- bundle exec rake db:migrate --trace
+- bundle exec rake db:seed --trace
+- bundle exec rake db:test:prepare --trace
 script:
-  - RAILS_ENV=test bundle exec rake spec
-gemfile: 
-  - Gemfile
-
+- RAILS_ENV=test bundle exec rake spec
+gemfile:
+- Gemfile
+deploy:
+  provider: heroku
+  api_key:
+    secure: HlECGjxLLO/JjW9bSUg8IwzwumXOVlzMD7bgwEAL24n9LRe0N5nacaDxQpDdJL1VPN78IwvpmJFmWyxKEXpZ4c+x5eKJ0rbeoAfvy4VMpIzXOj/K16I3xDIwizzB1Z48eo9H9l0OJXnDJ+8kxVslO3Dp0nN9wCddXU/iTvtQP1Q=
+  app: markdown-drive
+  on:
+    repo: yucchiy/markdown-drive
