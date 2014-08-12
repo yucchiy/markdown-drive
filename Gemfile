@@ -10,6 +10,7 @@ gem 'spring',        group: :development
 gem 'sass-rails', '~> 4.0.3'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass-rails'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
