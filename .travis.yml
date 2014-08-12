@@ -13,10 +13,10 @@ script:
 - RAILS_ENV=test bundle exec rake spec
 gemfile:
 - Gemfile
-deploy:
-  provider: heroku
-  api_key:
-    secure: HlECGjxLLO/JjW9bSUg8IwzwumXOVlzMD7bgwEAL24n9LRe0N5nacaDxQpDdJL1VPN78IwvpmJFmWyxKEXpZ4c+x5eKJ0rbeoAfvy4VMpIzXOj/K16I3xDIwizzB1Z48eo9H9l0OJXnDJ+8kxVslO3Dp0nN9wCddXU/iTvtQP1Q=
-  app: markdown-drive
-  on:
-    repo: yucchiy/markdown-drive
+#deploy:
+#  provider: heroku
+#  api_key:
+#    secure: HlECGjxLLO/JjW9bSUg8IwzwumXOVlzMD7bgwEAL24n9LRe0N5nacaDxQpDdJL1VPN78IwvpmJFmWyxKEXpZ4c+x5eKJ0rbeoAfvy4VMpIzXOj/K16I3xDIwizzB1Z48eo9H9l0OJXnDJ+8kxVslO3Dp0nN9wCddXU/iTvtQP1Q=
+#  app: markdown-drive
+#  on:
+#    repo: yucchiy/markdown-drive
