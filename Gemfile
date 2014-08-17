@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.4'
+gem 'omniauth'
+gem 'omniauth-dropbox-oauth2'
+gem 'omniauth-twitter'
+
 gem 'sqlite3', :group => :development
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0'
