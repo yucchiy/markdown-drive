@@ -1,11 +1,7 @@
 class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
-    @identity = Identity.with_omniauth(auth)
-
-    logger.debug(auth.extra)
-    logger.debug(auth.provider)
-    logger.debug(auth.slice(:provider, :uid))
+    @identity = Identity.with_omniauth!(auth)
 
     if signed_in?
       if @identity.user.present?
