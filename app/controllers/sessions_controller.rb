@@ -3,9 +3,17 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     @identity = Identity.with_omniauth(auth)
 
+    logger.debug(auth.extra)
+    logger.debug(auth.provider)
+    logger.debug(auth.slice(:provider, :uid))
+
     if signed_in?
-      if @identity.user == current_user
-        redirect_to root_url, notice: "Already linked that account!"
+      if @identity.user.present?
+        if @identity.user == current_user
+          redirect_to root_url, notice: "Already linked that account!"
+        else
+          redirect_to root_url, notice: "Another user already linked that account!"
+        end
       else
         @identity.user = current_user
         @identity.save
@@ -16,8 +24,7 @@ class SessionsController < ApplicationController
         self.current_user = @identity.user
         redirect_to root_url, notice: "Signed in!"
       else
-        @identity.user = User.create
-        @identity.user.name = auth['username']
+        @identity.user = User.create_with_omniauth(auth)
         @identity.save
         self.current_user = @identity.user
         redirect_to root_url, notice: "Signed up Successfully!"
@@ -26,5 +33,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil
+    redirect_to root_url, notice: "Signed out!"
   end
 end
