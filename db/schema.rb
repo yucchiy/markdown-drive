@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818061955) do
+ActiveRecord::Schema.define(version: 20140824015051) do
+
+  create_table "documents", force: true do |t|
+    t.string   "path"
+    t.string   "rev"
+    t.integer  "revision"
+    t.integer  "bytes"
+    t.string   "size"
+    t.boolean  "is_deleted"
+    t.integer  "user_id"
+    t.datetime "edited_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["user_id", "path"], name: "index_documents_on_user_id_and_path", unique: true
 
   create_table "identities", force: true do |t|
     t.string   "username"
