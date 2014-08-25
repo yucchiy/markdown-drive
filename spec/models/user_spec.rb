@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  it "is name valid with name" do
+  it "is valid with name" do
     expect(FactoryGirl.build(:user)).to be_valid
   end
 
