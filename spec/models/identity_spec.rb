@@ -31,3 +31,4 @@ RSpec.describe Identity, :type => :model do
     expect(identity).to have(1).errors_on(:provider)
   end
 end
+
