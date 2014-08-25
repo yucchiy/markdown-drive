@@ -155,6 +155,8 @@ GEM
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
+    rspec-collection_matchers (1.0.0)
+      rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -223,6 +225,7 @@ DEPENDENCIES
   rails (= 4.1.4)
   rails-erd
   rails_12factor
+  rspec-collection_matchers
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   spring

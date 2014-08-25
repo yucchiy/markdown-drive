@@ -23,6 +23,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
+  gem 'rspec-collection_matchers'
 end
 
 group :test, :production do
