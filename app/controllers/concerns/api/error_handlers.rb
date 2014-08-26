@@ -8,16 +8,19 @@ end
 module Api::ErrorHandlers
   extend ActiveSupport::Concern
 
-  class RescuableException
+  attr_accessor :status, :message
+
+  class RescuableException < StandardError
     attr_accessor :status, :message
 
     def initialize(status = 500, message = "")
-      @status_code = status_code
+      @status = status
     end
   end
 
   included do
-    rescue_from StandardError, with :rescue_exception
+    rescue_from StandardError, :with => :rescue_exception
+    before_filter :setup
   end
 
   RESCUABLE_EXCEPTIONS = {
@@ -26,12 +29,20 @@ module Api::ErrorHandlers
 
   private
 
-  def rescue_exception(exception)
-    if rescuable(exception)
-    else
-    end
+  def rescue_exception(e)
+    @message = e.message
+    re = RESCUABLE_EXCEPTIONS[e.to_s.to_sym]
+    @status = re.status
+
+    render 'api/errors/base'
   end
 
-  def rescuable?(exception)
+  def rescuable?(e)
+    return e.is_a?(RescuableException)
+  end
+
+  def setup
+    @status = 200
+    @message = "OK"
   end
 end

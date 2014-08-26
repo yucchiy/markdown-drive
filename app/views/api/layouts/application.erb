@@ -1,0 +1,5 @@
+{
+  "status": <%= @status.to_json.html_safe %>,
+  "message": <%= @message.to_json.html_safe %>,
+  "data": <%= yield %>
+}
