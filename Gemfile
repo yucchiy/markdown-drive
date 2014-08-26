@@ -19,6 +19,11 @@ gem "rails-erd", group: :development
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard'
+  gem 'rspec-collection_matchers'
 end
 
 group :test, :production do
