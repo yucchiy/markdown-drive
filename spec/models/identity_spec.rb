@@ -24,4 +24,9 @@ RSpec.describe Identity, :type => :model do
   it "is invalid without associated user" do
     expect(FactoryGirl.build(:identity_dropbox, user_id: nil)).to be_invalid
   end
+
+  it "does not allow duplicate identities" do
+    FactoryGirl.create(:identity_dropbox)
+    expect(FactoryGirl.build(:identity_dropbox)).to be_invalid
+  end
 end
