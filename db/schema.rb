@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824015051) do
+ActiveRecord::Schema.define(version: 20140826014853) do
 
   create_table "documents", force: true do |t|
     t.string   "path"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140824015051) do
     t.string   "access_token_secret"
   end
 
+  add_index "identities", ["uid", "provider"], name: "index_identities_on_uid_and_provider", unique: true
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "users", force: true do |t|

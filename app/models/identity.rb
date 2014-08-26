@@ -6,7 +6,7 @@ class Identity < ActiveRecord::Base
   validates :uid, :presence => true
   validates :provider, :presence => true, inclusion: { in: [:dropbox] }
   validates :user, :presence => true
-  validates :user_id, :uniqueness => { scope: :provider }
+  validates :provider, :uniqueness => { scope: :uid }
 
   def self.with_omniauth!(auth)
     identity = where(auth.slice(:provider, :uid)).first_or_create! do |identity|

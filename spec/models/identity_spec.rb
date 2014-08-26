@@ -26,7 +26,8 @@ RSpec.describe Identity, :type => :model do
   end
 
   it "does not allow duplicate identities" do
-    FactoryGirl.create(:identity_dropbox)
-    expect(FactoryGirl.build(:identity_dropbox)).to be_invalid
+    uid = Faker::Number.number(10).to_s
+    FactoryGirl.create(:identity_dropbox, uid: uid)
+    expect(FactoryGirl.build(:identity_dropbox, uid: uid)).to be_invalid
   end
 end
