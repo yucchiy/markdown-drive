@@ -12,8 +12,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
-gem 'spring',        group: :development
+gem 'rabl'
 
+gem 'spring',        group: :development
 gem "rails-erd", group: :development
 
 group :development, :test do
