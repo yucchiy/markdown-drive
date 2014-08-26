@@ -29,10 +29,6 @@ RSpec.describe Document, :type => :model do
     expect(FactoryGirl.build(:document, is_deleted: nil)).to be_invalid
   end
 
-  it "is_deleted should be boolean" do
-    expect(FactoryGirl.build(:document, is_deleted: "boolean")).to have(1).errors_on(:is_deleted)
-  end
-
   it "is invalid without edited_at" do
     expect(FactoryGirl.build(:document, edited_at: nil)).to be_invalid
   end
@@ -46,7 +42,8 @@ RSpec.describe Document, :type => :model do
   end
 
   it "does not allow duplicate documents per user" do
-    FactoryGirl.create(:document)
-    expect(FactoryGirl.build(:document)).to be_invalid
+    user = FactoryGirl.create(:user)
+    FactoryGirl.create(:document, user: user)
+    expect(FactoryGirl.build(:document, user: user)).to be_invalid
   end
 end

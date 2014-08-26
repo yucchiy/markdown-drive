@@ -9,6 +9,7 @@ FactoryGirl.define do
     size "0 bytes"
     is_deleted false
     association :user
+    edited_at "Mon, 18 Jul 2011 20:13:43 +0000"
 
     factory :document_deleted do
       is_deleted true
