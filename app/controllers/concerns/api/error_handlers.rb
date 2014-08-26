@@ -11,34 +11,39 @@ module Api::ErrorHandlers
   attr_accessor :status, :message
 
   class RescuableException < StandardError
-    attr_accessor :status, :message
+    attr_accessor :status
 
-    def initialize(status = 500, message = "")
+    def initialize(status = 500)
       @status = status
     end
   end
 
   included do
-    rescue_from StandardError, :with => :rescue_exception
     before_filter :setup
+    rescue_from StandardError, :with => :rescue_exception
   end
 
   RESCUABLE_EXCEPTIONS = {
-    ActiveRecord::RecordNotFound.to_s.to_sym => RescuableException.new(404, "Record not found")
+    ActiveRecord::RecordNotFound.to_s.to_sym => RescuableException.new(404)
   }
 
   private
 
   def rescue_exception(e)
     @message = e.message
-    re = RESCUABLE_EXCEPTIONS[e.to_s.to_sym]
-    @status = re.status
+    if rescuable?(e)
+      re = e.is_a?(RescuableException) ? e : RESCUABLE_EXCEPTIONS[e.to_s.to_sym]
+      @status = re.status
+    else
+      @status = 500
+      @message = e.message
+    end
 
     render 'api/errors/base'
   end
 
   def rescuable?(e)
-    return e.is_a?(RescuableException)
+    return e.is_a?(RescuableException) || RESCUABLE_EXCEPTIONS.has_key?(e.to_s.to_sym)
   end
 
   def setup
