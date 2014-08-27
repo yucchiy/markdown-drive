@@ -11,4 +11,22 @@ class Document < ActiveRecord::Base
   validates :edited_at, :presence => true
   validates :user, :presence => true
   validates :user_id, :uniqueness => { scope: [:path] }
+
+  def self.create_with_dropbox_document_and_user!(dropbox_document, user)
+    document = self
+    .where("path = ?", dropbox_document["path"])
+    .where("user_id = ?", user.id)
+    .first_or_initialize
+
+    document.user = user
+    document.path = dropbox_document["path"]
+    document.revision = dropbox_document["revision"]
+    document.rev = dropbox_document["rev"]
+    document.is_deleted = dropbox_document["is_deleted"] || false
+    document.size = dropbox_document["size"]
+    document.bytes = dropbox_document["bytes"]
+    document.edited_at = dropbox_document["modified"]
+
+    return document
+  end
 end

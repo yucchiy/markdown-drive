@@ -7,7 +7,7 @@ FactoryGirl.define do
     association :user
 
     factory :identity_dropbox do
-      provider :dropbox
+      provider "dropbox"
       access_token "bpd2jLxFfVcAAAAAAAAUatUHTG8Yr6QGSwE1sKOo_62wOxAJowV4ly2Ny9dEjIef"
       access_token_secret nil
     end

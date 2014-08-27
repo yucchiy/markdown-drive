@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'rabl'
+gem 'dropbox-sdk'
 
 gem 'spring',        group: :development
 gem "rails-erd", group: :development
