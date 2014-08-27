@@ -17,7 +17,9 @@ class Api::DocumentsController < Api::ApplicationController
     @documents = []
     response = client.metadata("/Data/Memolist", 25000, true, nil, nil, true)
     response["contents"].each do |document_dropbox|
-      @documents << Document.create_with_dropbox_document_and_user!(document_dropbox, @current_user)
+      if !document_dropbox["is_dir"] && /\.(md|mkdn|markdown)$/.match(document_dropbox["path"])
+        @documents << Document.create_with_dropbox_document_and_user!(document_dropbox, @current_user)
+      end
     end
 
     render 'api/documents/index'
