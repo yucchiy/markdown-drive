@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     scope :format => true, :constraints => { :format => 'json' } do
-      resources :documents, only: [:index, :show]
       match '/documents/fetch', to: 'documents#fetch', via: [:get, :post]
+      resources :documents, only: [:index, :show]
     end
   end
 

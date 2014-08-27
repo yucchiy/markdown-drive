@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def authenticate!
     raise Api::Exceptions::UnAuthenticationException if !signed_in?
   end
+
+  def authenticate_with_dropbox!
+    raise Api::Exceptions::UnAuthenticationException "No dropbox authentication" if !signed_in? || !Identity.get_with_user_and_provider(@current_user, "dropbox").present?
+  end
 end
