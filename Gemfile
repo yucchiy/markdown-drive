@@ -15,6 +15,8 @@ gem 'angular-rails-engine'
 gem 'jbuilder', '~> 2.0'
 gem 'rabl'
 gem 'dropbox-sdk'
+gem 'redcarpet'
+gem 'albino'
 
 gem 'spring',        group: :development
 gem "rails-erd", group: :development
