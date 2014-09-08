@@ -2,6 +2,8 @@ markdownDrive = angular.module 'MarkdownDrive', []
 
 markdownDrive.controller 'DocumentsController', ($scope, $http) ->
   $scope.documents = null
+  $scope.page = 1
+  $scope.perPage = 20
 
   initialize = () ->
     $http.get("/api/documents/fetch.json")
@@ -11,3 +13,4 @@ markdownDrive.controller 'DocumentsController', ($scope, $http) ->
 
   initialize()
   return
+

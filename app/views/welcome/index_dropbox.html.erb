@@ -1,16 +1,17 @@
 <div ng-controller="DocumentsController">
 
-  <table ng-show="documents != null" class="uk-table uk-table-striped">
-    <thead>
-       <tr>
-         <th>#</th>
-         <th>Path</th>
-         <th>Modified</th>
-         <th>Size</th>
-         <th>Action</th>
-       </tr>
-    </thead>
-    <tbody>
+  <div ng-show="documents != null">
+    <table class="uk-table uk-table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Path</th>
+        <th>Modified</th>
+        <th>Size</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
       <tr ng-repeat="document in documents">
         <td>{{ document.revision }} </td>
         <td>{{ document.path }} </td>
@@ -21,8 +22,9 @@
           <button class="uk-button uk-button-success" type="button">Share</button>
         </td>
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 
   <div ng-show="documents == null">Now Loading...</div>
 </div>
