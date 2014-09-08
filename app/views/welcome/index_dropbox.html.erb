@@ -1,0 +1,30 @@
+<div ng-controller="DocumentsController">
+
+  <div ng-show="documents != null">
+    <table class="uk-table uk-table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Path</th>
+        <th>Modified</th>
+        <th>Size</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="document in documents">
+        <td>{{ document.revision }} </td>
+        <td>{{ document.path }} </td>
+        <td>{{ document.edited_at }} </td>
+        <td>{{ document.size }} </td>
+        <td>
+          <button class="uk-button uk-button-primary" type="button">Show</button>
+          <button class="uk-button uk-button-success" type="button">Share</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div ng-show="documents == null">Now Loading...</div>
+</div>
