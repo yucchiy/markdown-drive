@@ -6,10 +6,4 @@ feature "Welcomes", :type => :feature do
     visit root_path
     expect(page).to have_content 'Sign in with Github'
   end
-
-  scenario 'sign in with Github' do
-    visit root_path
-    click_link 'Sign in with Github'
-    expect(current_path).to eq '/auth/github'
-  end
 end
