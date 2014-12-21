@@ -24,6 +24,8 @@ gem 'slim'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'github_api'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
