@@ -1,4 +1,4 @@
 test:
   adapter: postgresql
-  database: markdown-drive_test
+  database: markdowndrive_test
   username: postgres
