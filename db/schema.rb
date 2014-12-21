@@ -17,14 +17,15 @@ ActiveRecord::Schema.define(version: 20141221111057) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                 null: false
-    t.string   "github_id",            null: false
-    t.string   "github_access_token",  null: false
-    t.string   "github_access_secret", null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "name",         null: false
+    t.string   "screen_name",  null: false
+    t.string   "github_id",    null: false
+    t.string   "github_token", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "users", ["github_id"], name: "index_users_on_github_id", unique: true, using: :btree
+  add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true, using: :btree
 
 end
