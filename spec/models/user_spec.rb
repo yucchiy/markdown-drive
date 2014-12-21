@@ -30,8 +30,8 @@ RSpec.describe User, :type => :model do
 
   it "is invalid with a duplicate github_id" do
     same_token = "onazitoken"
-    FactoryGirl.create(:user, token: same_token)
-    expect(FactoryGirl.build(:user, token: same_token)).not_to be_valid
+    FactoryGirl.create(:user, github_id: same_token)
+    expect(FactoryGirl.build(:user, github_id: same_token)).not_to be_valid
   end
 
   it "is invalid without a github_token" do
