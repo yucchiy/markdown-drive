@@ -12,6 +12,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# ExecJS
+gem 'libv8'
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
   # Use postgresql as the database for Active Record
 gem 'pg'
 
