@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title MarkdownDrive
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    header#header
+      h1.title.logo Slim Test
+
+    == yield

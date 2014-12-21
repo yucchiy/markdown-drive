@@ -17,7 +17,10 @@ gem 'libv8'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 
-  # Use postgresql as the database for Active Record
+# template engine
+gem 'slim'
+
+# Use postgresql as the database for Active Record
 gem 'pg'
 
 # Use ActiveModel has_secure_password
