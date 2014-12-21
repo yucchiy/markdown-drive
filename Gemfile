@@ -20,6 +20,10 @@ gem 'therubyracer', :platforms => :ruby
 # template engine
 gem 'slim'
 
+# authentication
+gem 'omniauth'
+gem 'omniauth-github'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
