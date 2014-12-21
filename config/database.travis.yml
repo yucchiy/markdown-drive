@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: markdown-drive_test
+  username: postgres
