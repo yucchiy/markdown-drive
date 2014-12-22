@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
 
   def create
-    pp auth_hash
+  end
+
+  def destroy
+    redirect_to root_path
   end
 
   private
