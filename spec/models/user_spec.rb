@@ -58,28 +58,6 @@ RSpec.describe User, :type => :model do
       }
     }) }
 
-    context "returns no user when an invalid auth_hash passed" do
-      it "without uid" do
-        auth_hash['uid'] = nil
-        expect(User.find_or_create_by_auth_hash(auth_hash)).to be_nil
-      end
-
-      it "without info.nickname" do
-        auth_hash['info']['nickname'] = nil
-        expect(User.find_or_create_by_auth_hash(auth_hash)).to be_nil
-      end
-
-      it "without info.name" do
-        auth_hash['info']['name'] = nil
-        expect(User.find_or_create_by_auth_hash(auth_hash)).to be_nil
-      end
-
-      it "without credentials.github_token" do
-        auth_hash['credentials']['token'] = nil
-        expect(User.find_or_create_by_auth_hash(auth_hash)).to be_nil
-      end
-    end
-
     it "returns a new user when such a auth_hash does not exist" do
       expect(User.find_or_create_by_auth_hash(auth_hash)).to be_valid
     end
