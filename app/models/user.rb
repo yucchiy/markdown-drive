@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   validates :github_token, presence: true
 
   def self.find_or_create_by_auth_hash(auth_hash)
-
     User.find_or_create_by(github_id: auth_hash['uid']) do |user|
       user.name = auth_hash['info']['name']
       user.screen_name = auth_hash['info']['nickname']
