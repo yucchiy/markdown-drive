@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
   validates :github_id, presence: true
   validates_uniqueness_of :github_id
   validates :github_token, presence: true
+
+  def self.find_or_create_by_auth_hash(auth_hash)
+  end
 end

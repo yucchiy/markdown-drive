@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
-    p auth_hash.credentials
+    pp auth_hash
   end
 
   private
