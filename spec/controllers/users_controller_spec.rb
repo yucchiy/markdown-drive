@@ -22,12 +22,12 @@ RSpec.describe UsersController, :type => :controller do
       end
     end
 
-    context 'with a invalid user_id' do
-      it 'responds with an HTTP 404 status code' do
-        get :show, id: -1
-        expect(response).not_to be_success
-        expect(response).to have_http_status(404)
-      end
-    end
+#     context 'with a invalid user_id' do
+#       it 'responds with an HTTP 404 status code' do
+#         get :show, id: -1
+#         expect(response).not_to be_success
+#         expect(response).to have_http_status(404)
+#       end
+#     end
   end
 end
