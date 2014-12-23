@@ -4,9 +4,14 @@ html
     title MarkdownDrive
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
 
   body
-    header#header
-      h1.title.logo Slim Test
+    header role="header"
+      = render 'shared/header'
 
-    == yield
+    section#main-content.row role="main"
+      == yield
+
+    footer role="footer"
+      = render 'shared/footer'
