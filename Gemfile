@@ -26,6 +26,8 @@ gem 'omniauth-github'
 
 gem 'github_api'
 
+gem 'foundation-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
