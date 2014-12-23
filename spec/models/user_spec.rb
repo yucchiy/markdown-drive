@@ -40,6 +40,14 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user, github_token: nil)).not_to be_valid
   end
 
+  it "is invalid without an avatar_url" do
+    expect(FactoryGirl.build(:user, avatar_url: nil)).not_to be_valid
+  end
+
+  it "is invalid when an avatar_url is not url" do
+    expect(FactoryGirl.build(:user, avatar_url: "koreha-url-dehanai")).not_to be_valid
+  end
+
   context "User.find_or_create_by_auth_hash(auth_hash)" do
 
     let(:auth_hash) { OmniAuth::AuthHash.new({
