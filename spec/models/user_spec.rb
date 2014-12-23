@@ -48,7 +48,8 @@ RSpec.describe User, :type => :model do
 
   context "User.find_or_create_by_auth_hash(auth_hash)" do
 
-    before { auth_hash = OmniAuth::AuthHash.new({
+    let(:user) { FactoryGirl.build(:user) }
+    let(:auth_hash) { OmniAuth::AuthHash.new({
       'provider' => 'github',
       'uid' => '123456',
       'info' => {
