@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
-  let(:user) { FactoryGirl.build(:user) }
-
   it "has a valid factory" do
     expect(FactoryGirl.build(:user)).to be_valid
   end
@@ -40,14 +38,24 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user, github_token: nil)).not_to be_valid
   end
 
+  it "is invalid without an avatar_url" do
+    expect(FactoryGirl.build(:user, avatar_url: nil)).not_to be_valid
+  end
+
+  it "is invalid when an avatar_url is not url" do
+    expect(FactoryGirl.build(:user, avatar_url: "koreha-url-dehanai")).not_to be_valid
+  end
+
   context "User.find_or_create_by_auth_hash(auth_hash)" do
 
+    let(:user) { FactoryGirl.build(:user) }
     let(:auth_hash) { OmniAuth::AuthHash.new({
       'provider' => 'github',
       'uid' => '123456',
       'info' => {
         'nickname' => 'test_taro',
         'name' => 'Test Taro',
+        'image' => 'https://avatars1.githubusercontent.com/u/325819',
       },
       'credentials' => {
         'token' => 'himitsunotokenda'

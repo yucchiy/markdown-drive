@@ -24,6 +24,8 @@ gem 'slim'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'validate_url'
+
 gem 'github_api'
 
 gem 'foundation-rails'
