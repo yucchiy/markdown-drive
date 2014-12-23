@@ -9,6 +9,7 @@ RSpec.describe SessionsController, :type => :controller do
         'info' => {
           'nickname' => 'taro_tanaka',
           'name' => 'Taro tanaka',
+          'image' => 'https://avatars1.githubusercontent.com/u/325819'
         },
         'credentials' => {
           'token' => 'himitsunotokenda'
