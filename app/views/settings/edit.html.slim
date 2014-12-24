@@ -1,0 +1,10 @@
+div.row
+  h2 Edit Setting
+
+  = form_for(@user_setting, url: :update_setting) do |f|
+    div.large-12.columns
+      = f.label :repository
+      = f.text_field :repository
+    div.large-12.columns
+      = f.submit class: 'button'
+
