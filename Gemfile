@@ -26,7 +26,7 @@ gem 'omniauth-github'
 
 gem 'validate_url'
 
-gem 'github_api'
+gem 'octokit'
 
 gem 'foundation-rails'
 
