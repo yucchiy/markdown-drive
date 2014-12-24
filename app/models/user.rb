@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_one :user_setting
+
   validates :name, presence: true, length: { maximum: 50 }
   validates :screen_name, presence: true
   validates_uniqueness_of :screen_name

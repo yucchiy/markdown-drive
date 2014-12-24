@@ -20,11 +20,15 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in?
-    !@current_user.nil?
+    !current_user.nil?
   end
 
   def sign_out
     reset_session
     @current_user = nil
+  end
+
+  def authenticated_user!
+    redirect_to root_path unless signed_in?
   end
 end
