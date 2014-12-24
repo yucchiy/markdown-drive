@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   match 'users/:id', to: 'users#show', via: :get, as: :user
 
   match 'settings/edit', to: 'settings#edit', via: :get, as: :edit_setting
-  match 'settings', to: 'settings#update', via: [:post, :put, :patch],  as: :update_setting
+  match 'settings', to: 'settings#update', via: [:put, :patch],  as: :update_setting
 
   root 'welcome#index'
 end
