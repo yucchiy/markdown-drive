@@ -46,6 +46,10 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user, avatar_url: "koreha-url-dehanai")).not_to be_valid
   end
 
+  it "is invalid without user_setting" do
+    expect(FactoryGirl.build(:user, user_setting: nil)).not_to be_valid
+  end
+
   context "User.find_or_create_by_auth_hash(auth_hash)" do
 
     let(:user) { FactoryGirl.build(:user) }

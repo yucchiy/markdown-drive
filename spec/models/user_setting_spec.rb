@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserSetting, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "check attributes" do
+    it "pending"
+  end
 end
