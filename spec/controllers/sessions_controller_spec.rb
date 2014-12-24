@@ -28,6 +28,7 @@ RSpec.describe SessionsController, :type => :controller do
           sign_in(user)
           get :create, provider: :github
           expect(current_user.id).to eq(user.id)
+          expect(current_user.user_setting).not_to be_nil
           expect(response).to redirect_to(user_path(current_user))
         end
       end
@@ -36,6 +37,7 @@ RSpec.describe SessionsController, :type => :controller do
         it 'redirect to mypage with an authentication' do
           get :create, provider: :github
           expect(signed_in?).to eq(true)
+          expect(current_user.user_setting).not_to be_nil
           expect(response).to redirect_to(user_path(current_user))
         end
       end
