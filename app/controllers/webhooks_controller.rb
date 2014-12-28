@@ -33,6 +33,8 @@ class WebhooksController < ApplicationController
         w.user_id = User.first.id
       end
 
+      pp webhook_event
+
       webhook_event.save
     end
   end
