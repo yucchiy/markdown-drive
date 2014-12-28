@@ -39,6 +39,10 @@ gem 'pg'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'oj'
+
+gem 'sidekiq'
+
 group :production do
 # Use Unicorn as the app server
 # gem 'unicorn'
