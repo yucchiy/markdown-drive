@@ -1,4 +1,5 @@
 class WebhooksController < ApplicationController
+  skip_before_filter :verify_authenticity_token
 
   def index
     if github_delivery_id.present? && github_event_type != nil && github_event_type == 'push'
