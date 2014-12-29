@@ -167,11 +167,10 @@ RSpec.describe WebhooksController, :type => :controller do
   }
 }
         JSON
+
         @data = Oj.load(json, :mode => :compat)
         request.headers["X-Github-Event"] = "push"
         request.headers["X-Github-Delivery"] = "72d3162e-cc78-11e3-81ab-4c9367dc0958"
-
-        @user = FactoryGirl.create(:user)
       end
 
       it "responds successfully with HTTP 200 status" do
@@ -181,8 +180,15 @@ RSpec.describe WebhooksController, :type => :controller do
       end
 
       it "has one WebhookEvent" do
+        @user = FactoryGirl.create(:user, github_id: 6752317)
         post :index, Oj.dump(@data, :mode => :compat)
         expect(WebhookEvent.first).not_to be_nil
+      end
+
+      it "has no WebhookEvent" do
+        @user = FactoryGirl.create(:user, github_id: 123456)
+        post :index, Oj.dump(@data, :mode => :compat)
+        expect(WebhookEvent.all.length).to eq(0)
       end
     end
   end
