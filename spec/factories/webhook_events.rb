@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :webhook_event do
-
     github_delivery_id "72d3162e-cc78-11e3-81ab-4c9367dc0958"
     ref "refs/heads/gh-pages"
     head_commit_id "7700ca29dd050d9adacc0803f866d9b539513535"
-    association :user, :factory => :user
+    association :repository, :factory => :repository
     payload_json <<-"EOH"
 {
   "ref": "refs/heads/gh-pages",

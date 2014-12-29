@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228062220) do
+ActiveRecord::Schema.define(version: 20141229074807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20141228062220) do
   add_index "articles", ["path"], name: "index_articles_on_path", using: :btree
   add_index "articles", ["title"], name: "index_articles_on_title", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
+
+  create_table "repositories", force: :cascade do |t|
+    t.string   "github_repository_id"
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "master_branch"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "repositories", ["github_repository_id"], name: "index_repositories_on_github_repository_id", unique: true, using: :btree
 
   create_table "user_settings", force: :cascade do |t|
     t.string   "repository"
@@ -53,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141228062220) do
   add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true, using: :btree
 
   create_table "webhook_events", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "repository_id"
     t.string   "github_delivery_id"
     t.string   "ref"
     t.string   "head_commit_id"
@@ -62,6 +74,6 @@ ActiveRecord::Schema.define(version: 20141228062220) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "webhook_events", ["user_id"], name: "index_webhook_events_on_user_id", using: :btree
+  add_index "webhook_events", ["repository_id"], name: "index_webhook_events_on_repository_id", unique: true, using: :btree
 
 end

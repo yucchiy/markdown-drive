@@ -1,7 +1,7 @@
 class CreateWebhookEvents < ActiveRecord::Migration
   def change
     create_table :webhook_events do |t|
-      t.references :user
+      t.references :repository
       t.string :github_delivery_id
       t.string :ref
       t.string :head_commit_id
@@ -10,6 +10,6 @@ class CreateWebhookEvents < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :webhook_events, :user_id
+    add_index :webhook_events, :repository_id, unique: true
   end
 end
