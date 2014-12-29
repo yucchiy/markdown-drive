@@ -3,6 +3,26 @@ require 'rails_helper'
 RSpec.describe WebhooksController, :type => :controller do
   describe "POST #index" do
     context "with a valid request" do
+
+      it "responds successfully with HTTP 200 status" do
+        post :index, Oj.dump(@data, :mode => :compat)
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "has one WebhookEvent" do
+        @user = FactoryGirl.create(:user, github_id: 6752317)
+        post :index, Oj.dump(@data, :mode => :compat)
+        expect(Repository.first).not_to be_nil
+        expect(WebhookEvent.first).not_to be_nil
+      end
+
+      it "has no WebhookEvent" do
+        @user = FactoryGirl.create(:user, github_id: 123456)
+        post :index, Oj.dump(@data, :mode => :compat)
+        expect(WebhookEvent.all.length).to eq(0)
+      end
+
       before :each do
         json =<<-"JSON"
 {
@@ -171,24 +191,6 @@ RSpec.describe WebhooksController, :type => :controller do
         @data = Oj.load(json, :mode => :compat)
         request.headers["X-Github-Event"] = "push"
         request.headers["X-Github-Delivery"] = "72d3162e-cc78-11e3-81ab-4c9367dc0958"
-      end
-
-      it "responds successfully with HTTP 200 status" do
-        post :index, Oj.dump(@data, :mode => :compat)
-        expect(response).to be_success
-        expect(response).to have_http_status(200)
-      end
-
-      it "has one WebhookEvent" do
-        @user = FactoryGirl.create(:user, github_id: 6752317)
-        post :index, Oj.dump(@data, :mode => :compat)
-        expect(WebhookEvent.first).not_to be_nil
-      end
-
-      it "has no WebhookEvent" do
-        @user = FactoryGirl.create(:user, github_id: 123456)
-        post :index, Oj.dump(@data, :mode => :compat)
-        expect(WebhookEvent.all.length).to eq(0)
       end
     end
   end

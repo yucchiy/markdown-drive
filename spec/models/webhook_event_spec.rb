@@ -22,8 +22,8 @@ RSpec.describe WebhookEvent, :type => :model do
       expect(FactoryGirl.build(:webhook_event, :payload_json => nil)).not_to be_valid
     end
 
-    it "is invalid without an associated user" do
-      expect(FactoryGirl.build(:webhook_event, user: nil)).not_to be_valid
+    it "is invalid without an associated repository" do
+      expect(FactoryGirl.build(:webhook_event, repository: nil)).not_to be_valid
     end
   end
 
