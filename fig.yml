@@ -1,0 +1,17 @@
+db:
+  image: mysql:5.5
+  environment:
+    - MYSQL_ROOT_PASSWORD=himitsunopassword
+  ports:
+    - "3306"
+  volumes:
+    - /storage/mysql/markdown-drive:/var/lib/mysql
+web:
+  build: .
+  command: bash -l -c 'bundle exec rails s --bind=0.0.0.0'
+  ports:
+    - "3000:3000"
+  volumes:
+    - ./:/app
+  links:
+    - db
